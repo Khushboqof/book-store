@@ -4,6 +4,8 @@ using BookStore.Data.DbContexts;
 using BookStore.Data.IRepositories;
 using BookStore.Data.Repositories;
 using BookStore.Domain.Entities.Users;
+using BookStore.Service.Interfaces.Users;
+using BookStore.Service.services;
 
 var dbContext = new AppDbContext();
 
@@ -21,8 +23,7 @@ User user = new User()
 
 //var res = await repository.GetAsync(o => o.FirstName == "John");
 
-repository.DeleteAsync(1);
-
+IUserService service = new UserService();
 
 
 //var res = repository.GetAllAsync(o => o.Id == 1);

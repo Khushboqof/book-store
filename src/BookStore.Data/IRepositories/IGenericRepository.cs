@@ -12,7 +12,7 @@ namespace BookStore.Data.IRepositories
     {
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);
-        void DeleteAsync(int id);
+        void DeleteAsync(Expression<Func<T, bool>> expression);
         Task<T?> GetAsync(Expression<Func<T, bool>> expression);
         IQueryable<T> GetAllAsync(Expression<Func<T, bool>> expression = null!);
     }

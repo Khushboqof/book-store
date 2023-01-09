@@ -30,9 +30,9 @@ namespace BookStore.Data.Repositories
             return entity;
         }
 
-        public void DeleteAsync(int id)
+        public void DeleteAsync(Expression<Func<T, bool>> expression)
         {
-            var entity = _dbSet.FirstOrDefault(x => x.Id == id);
+            var entity = _dbSet.FirstOrDefault(expression);
             _dbSet.Remove(entity);
 
             _dbContext.SaveChanges();

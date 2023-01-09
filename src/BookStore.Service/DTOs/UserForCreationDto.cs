@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookStore.Domain.Entities.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -20,5 +21,16 @@ namespace BookStore.Service.DTOs
 
         [Required(), MinLength(8)]
         public string Password { get; set; } = string.Empty;
+
+        public static implicit operator User(UserForCreationDto forCreationDto)
+        {
+            return new User
+            {
+                FirstName = forCreationDto.FirstName,
+                LastName= forCreationDto.LastName,  
+                PhoneNumber = forCreationDto.PhoneNumber,
+                Password = forCreationDto.Password
+            };
+        }
     }
 }
