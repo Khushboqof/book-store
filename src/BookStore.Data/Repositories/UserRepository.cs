@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BookStore.Data.Repositories
 {
-    public class UserRepository : GenericRepository<User>
+    public class UserRepository : GenericRepository<User>, IUserRepository
     {
         public UserRepository(AppDbContext dbContext) : base(dbContext)
         {

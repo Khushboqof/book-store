@@ -5,25 +5,20 @@ using BookStore.Data.Repositories;
 using BookStore.Domain.Entities.Users;
 using BookStore.Service.DTOs;
 using BookStore.Service.Interfaces.Users;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore.Service.services
 {
     public class UserService : IUserService
     {
-        public IUserRepository userRepository_;
-        public AppDbContext AppDbContextappDbContext;
-        public IMapper mappermapper_;
+        private readonly IUserRepository userRepository_;
+        private readonly AppDbContext AppDbContextappDbContext;
+        private readonly IMapper mappermapper_;
 
         public UserService()
         {
             var dbContext = new AppDbContext();
-            userRepository_ = new UserRepository();
+            userRepository_ = new UserRepository(dbContext);
         }
 
 
@@ -35,6 +30,8 @@ namespace BookStore.Service.services
                 throw new Exception("User already exist");
 
             var user = (User)userFor;
+
+            user.CreatedAt = DateTime.UtcNow;
 
             await userRepository_.CreateAsync(user);
 
@@ -78,6 +75,8 @@ namespace BookStore.Service.services
 
             if (user.PhoneNumber is not null)
                 user.PhoneNumber = userFor.PhoneNumber;
+
+            user.UpdatedAt = DateTime.UtcNow;
 
             userRepository_.UpdateAsync(user);
 

@@ -1,4 +1,5 @@
 ﻿using BookStore.Domain.Commons;
+using BookStore.Domain.Entities.Ordersr;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
