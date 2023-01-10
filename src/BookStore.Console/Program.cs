@@ -10,12 +10,17 @@ using BookStore.Service.services;
 
 var dbContext = new AppDbContext();
 
-IGenericRepository<User> repository = new GenericRepository<User>(dbContext);
-
 UserForUpdateDto user = new UserForUpdateDto()
 {
-    FirstName = "Johmn",
-    LastName = "Doee",
+    FirstName = "Kimdur",
+    LastName = "nimadureyev",
+    PhoneNumber = "993455345",
+};
+
+UserForCreationDto user1 = new UserForCreationDto()
+{
+    FirstName = "Salom",
+    LastName = "Toqayev",
     PhoneNumber = "912344223",
 };
 
@@ -23,12 +28,14 @@ UserForUpdateDto user = new UserForUpdateDto()
 
 IUserService service = new UserService();
 
- var res = await service.GetAllAsync(o => o.UserRole == 0);
+await service.UpdateAsync(7, user);
 
-foreach (var i in res)
-{
-    Console.WriteLine(i.FirstName);
-}
+//var res = await service.GetAllAsync(o => o.PhoneNumber.StartsWith("99"));
+
+//foreach (var i in res)
+//{
+//    Console.WriteLine(i.FirstName);
+//}
 
 
 //var res = repository.GetAllAsync(o => o.Id == 1);

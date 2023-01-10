@@ -21,7 +21,6 @@ namespace BookStore.Service.services
             userRepository_ = new UserRepository(dbContext);
         }
 
-
         public async Task<bool> CreateAsync(UserForCreationDto userFor)
         {
             var newUser = await userRepository_.GetAsync(o => o.FirstName == userFor.FirstName);
